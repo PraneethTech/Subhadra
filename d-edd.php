@@ -4,7 +4,7 @@ include 'connect.php';
 
 session_start();
 include "check.php";
-
+error_reporting(E_ERROR | E_PARSE);
 ?>
 
 
@@ -107,7 +107,9 @@ include "check.php";
                                                     if(isset($_POST['submit']))
 													{
 														$month = $_POST['mon'];
-														$sql = mysqli_query($con,"SELECT id as pi,name ,patient_phone_number as ppn,edd,lmp,pog from patient_primary_information where monthname(edd)='$month' order by edd asc");
+														$sql = mysqli_query($con,"SELECT id as pi,name ,patient_phone_number as ppn,
+														edd,lmp,pog from patient_primary_information where monthname(edd)='$month'
+														order by edd asc");
 														
 
 														while($run = mysqli_fetch_assoc($sql))
@@ -123,7 +125,7 @@ include "check.php";
 															<td>'.$run['pog'].'</td>
 															<td>'.$run['name'].'</td> 
 															<td>'.$run['ppn'].'</td>
-															<td>'.$run['pi'].'</td>
+															<td>'.$id.'</td>
 															<td>'.'G<sub><b>'.$data['g'].'</b></sub>'.'L<sub><b>'.$data['l'].'</b></sub>'.'P<sub><b>'.$data['p'].'</b></sub>'.'A<sub><b>'.$data['a'].'</b></sub>'.'D<sub><b>'.$data['d'].'</b></sub>'.'</td>
 														    <td><button class="btn btn-danger">'.$data['hrp'].'</button></td></tr>';
 															}
@@ -135,13 +137,10 @@ include "check.php";
 																<td>'.$run['pog'].'</td>
 																<td>'.$run['name'].'</td> 
 																<td>'.$run['ppn'].'</td>
-																<td>'.$run['pi'].'</td>
-																<td>'.'G<sub><b>'.$data['g'].'</b></sub>'.'L<sub><b>'.$data['l'].'</b></sub>'.'P<sub><b>'.$data['p'].'</b></sub>'.'A<sub><b>'.$data['a'].'</b></sub>'.'D<sub><b>'.$data['d'].'</b></sub>'.'</h2></td>
-																<td>'.$data['hrp'].'</td></div></tr>';
-														}
-															
-														    
-														
+																<td>'.$id.'</td>
+																<td>'.'G<sub><b>'.$data['g'].'</b></sub>'.'L<sub><b>'.$data['l'].'</b></sub>'.'P<sub><b>'.$data['p'].'</b></sub>'.'A<sub><b>'.$data['a'].'</b></sub>'.'D<sub><b>'.$data['d'].'</b></sub>'.'</td>
+														    	<td>'.$data['hrp'].'</button></td></tr>';
+														}	
 														}
 													}
                                                 ?>

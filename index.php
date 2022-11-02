@@ -73,7 +73,7 @@ htmlspecialchars($password);
             <div class="login-wrapper">
                 <div class="container">
                     <div class="loginbox">
-                        <div class="login-left">
+                    <div class="login-left">
                             <img class="img-fluid" src="assets/img/logo.png" alt="Logo">
                         </div>
                         <div class="login-right">

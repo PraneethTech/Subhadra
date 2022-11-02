@@ -130,7 +130,7 @@ if(isset($_POST['gbsubmit']))
                 <div class="page-header">
                     <div class="row">
                         <div class="col-sm-12">
-                            <h3 class="page-title">Welcome <?php echo $name_staff; ?> !</h3>
+                            <h3 class="page-title">Welcome Subhadra Hospitals !</h3>
                             <!-- <ul class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
                                     <li class="breadcrumb-item active">Student Dashboard</li>

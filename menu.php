@@ -3,10 +3,10 @@
             <!-- Logo -->
             <div class="header-left">
                 <a href="dashboard.php" class="logo">
-                    <img src="assets/img/logo.png" alt="Logo">
+                    <img src="assets/img/logo1.png" alt="Logo">
                 </a>
                 <a href="dashboard.php" class="logo logo-small">
-                    <img src="assets/img/logo.png" alt="Logo" width="30" height="30">
+                    <img src="assets/img/logo-small.png" alt="Logo" width="30" height="30">
                 </a>
             </div>
             <!-- /Logo -->
@@ -101,6 +101,7 @@
                                 <li><a href="patient_details.php">Update Patient Profile</a></li>
                                 <li><a href="search-usf.php">Update Surgery Profiles</a></li>
                                 <li><a href="search-upf.php">Update Pregnancy Profiles</a></li>
+                                <li><a href="search-udischarge.php">Update Discharge Profiles</a></li>
                                 <!-- <li><a href="fees.php">Charges update</a></li> -->
                             </ul>
                         </li>

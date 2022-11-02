@@ -4,15 +4,15 @@ include 'connect.php';
 
 session_start();
 include "check.php";
-$sql = mysqli_query($con,"SELECT ppi.id as id, ppi.name as name, ppi.patient_phone_number as patient_phone_number, pi.token_id as token_id from patient_primary_information ppi, patient_inpatient_form pi 
-where ppi.id = pi.patient_id and pi.type_of_inpatient='Surgery' order by date desc");
+$sql = mysqli_query($con,"SELECT ppi.id as id, ppi.name as name, ppi.patient_phone_number as patient_phone_number, pi.tid as token_id from patient_primary_information ppi, patient_sdischarge_form pi 
+where ppi.id = pi.id  order by pi.date desc");
 ?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-        <title>	Inpatient List</title>
+        <title>	Discharge Summary List</title>
 		
 		<!-- Favicon -->
         <link rel="shortcut icon" href="assets/img/favicon.png">
@@ -48,11 +48,13 @@ where ppi.id = pi.patient_id and pi.type_of_inpatient='Surgery' order by date de
 					<div class="page-header">
 						<div class="row">
 							<div class="col">
-								<h3 class="page-title">UPDATE SURGERY FORM</h3>
-								<ul class="breadcrumb">
-									<li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>
-									<li class="breadcrumb-item active">UPDATE SURGERY FORM</li>
-								</ul>
+								<h3 class="page-title">UPDATE DISCHARGE SUMMARY LIST</h3>
+								<div class="col-md-9">
+                             		<ul class="list-links mb-4">
+                                		<li><a href="search-udischarge.php">Update Pregnancy Discharge Form</a></li>
+                                		<li class="active"><a href="search-usdischarge.php">Update Surgery Discharge Form</a></li>
+                           		 </ul>
+                       		   </div>
 							</div>
 						</div>
 					</div>
@@ -72,8 +74,7 @@ where ppi.id = pi.patient_id and pi.type_of_inpatient='Surgery' order by date de
 													<th>Name</th>
                                                     <th>Phone Number</th>
                                                     <th>Token ID</th>
-                                                    <th>Edit Surgery Profile</th>
-													<th></th>
+                                                    <th>Register</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -85,10 +86,7 @@ where ppi.id = pi.patient_id and pi.type_of_inpatient='Surgery' order by date de
                                                         <td>'.$run['name'].'</td>
                                                         <td>'.$run['patient_phone_number'].'</td>
                                                         <td>'.$run['token_id'].'</td>
-                                                        <td><a href="usf.php?pid='.$run['id'].'&tid='.$run['token_id'].'&name='.$run['name'].'"><button class="btn btn-primary">Update Surgery Form</button></a></td>
-														<td>
-														<a href="sf_print.php?pid='.$run['id'].'&tid='.$run['token_id'].'&name='.$run['name'].'" class="btn btn-primary">Print</a>
-														</td>
+                                                        <td><a href="usdischarge_summary.php?pid='.$run['id'].'&tid='.$run['token_id'].'"><button class="btn btn-primary">Update</button></a></td>
                                                         </tr>';
                                                     }
                                                 ?>

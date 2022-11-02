@@ -11,21 +11,15 @@ $res = mysqli_fetch_assoc($run);
 
 $run1 = mysqli_query($con, $query1);
 $res1 = mysqli_fetch_assoc($run1);
-$query2 = "SELECT `id`, `tid`, `admitting_diagnosis`, `treatment_given`, `condition_at_discharge`, `temp`, `pr`, `bp`, `h/l`, `breasts`, `p/a`, `p/v`, `lochia`, `advice_on_discharge`, `diet`, `activity`, `medications_and_follow_up`, `date` FROM `patient_discharge_form`  WHERE id='$pid' and tid='$tid'";
+
+$query2 = "SELECT `id`, `tid`, `admitting_diagnosis`, `treatment_given`, `condition_at_discharge`, `advice_on_discharge`, `diet`, `activity`, `medications_and_follow_up`, `date` FROM `patient_sdischarge_form`  WHERE id='$pid' and tid='$tid'";
 $r=mysqli_query($con,$query2);
 $res2 = mysqli_fetch_assoc($r);
 if (isset($_POST['submit'])) {
 	$addiag = $_POST['ad'];
 	$trgiven = $_POST['tg'];
 	$condatdis = $_POST['cad'];
-	$temp = $_POST['temp'];
-	$pr = $_POST['pr'];
-	$bp = $_POST['bp'];
-	$hl = $_POST['hl'];
-	$breasts = $_POST['bre'];
-	$pa = $_POST['pa'];
-	$pv = $_POST['pv'];
-	$lochia = $_POST['lo'];
+	
 	$aod = $_POST['aod'];
 	$diet = $_POST['diet'];
 	$activity = $_POST['activity'];
@@ -34,21 +28,19 @@ if (isset($_POST['submit'])) {
 	// foreach ($activity as $act1) {
 	// 	$act .= $act1 . ",";
 	// }
-    $query2 = "UPDATE `patient_discharge_form` SET 
+    $query2 = "UPDATE `patient_sdischarge_form` SET 
 	`admitting_diagnosis`='$addiag',`treatment_given`='$trgiven',
-	`condition_at_discharge`='$condatdis',`temp`='$temp',
-	`pr`='$pr',`bp`='$bp',`h/l`='$hl',
-	`breasts`='$breasts',`p/a`='$pa',`p/v`='$pv',
-	`lochia`='$lochia',`advice_on_discharge`='$aod',
+	`condition_at_discharge`='$condatdis',`advice_on_discharge`='$aod',
 	`diet`='$diet',`activity`='$activity',
 	`medications_and_follow_up`='$mafu' where id='$pid' and tid='$tid'";
 	$run2 = mysqli_query($con, $query2);
 	if($run2)
 	{
-		echo "<script>document.location='search-udischarge.php?pid=$pid&tid=$tid';</script>";
+		echo "<script>document.location='search-usdischarge.php?pid=$pid&tid=$tid';</script>";
 
 	}
 }
+
 
 
 ?>
@@ -95,7 +87,7 @@ if (isset($_POST['submit'])) {
 						<div class="col-md-12">
 							<div class="card">
 								<div class="card-header">
-									<h3 align="center" class="page-title">  UPDATE DISCHARGE SUMMARY</h3>
+									<h3 align="center" class="page-title">DISCHARGE SUMMARY FORM</h3>
 								</div>
 								<div class="card-body">
 									<form method="post"  class="needs-validation" novalidate>
@@ -124,7 +116,7 @@ if (isset($_POST['submit'])) {
 										<div class="col-md-12">
 											<div class="form-group">
 												<label><b>ADMITTING DIAGNOSIS</b> </label>
-												<input type="text" name="ad" value="<?php echo $res2['admitting_diagnosis'] ?>" class="form-control"  required>
+												<input type="text" name="ad" class="form-control"  value="<?php echo $res2['admitting_diagnosis']; ?>" required>
 												<div class="invalid-feedback">
 													Please choose "Diagnosis"
 												</div>
@@ -134,7 +126,7 @@ if (isset($_POST['submit'])) {
 											<div class="col-md-6">
 												<div class="form-group">
 													<label><b>TREATMENT GIVEN</b></label>
-													<textarea name="tg" class="form-control"  required><?php echo $res2['treatment_given'] ?></textarea>
+													<textarea name="tg" class="form-control"required><?php echo $res2['treatment_given']; ?></textarea>
 													<div class="invalid-feedback">
 														Please choose "Treatment Given"
 													</div>
@@ -143,7 +135,7 @@ if (isset($_POST['submit'])) {
 											<div class="col-md-6">
 												<div class="form-group">
 													<label><b>CONDITIONS AT DISCHARGE</b></label>
-													<textarea name="cad" class="form-control" required><?php echo $res2['condition_at_discharge'] ?></textarea>
+													<textarea name="cad" class="form-control"required><?php echo $res2['condition_at_discharge']; ?></textarea>
 													<div class="invalid-feedback">
 														Please choose "Conditions at Discharge"
 													</div>
@@ -153,88 +145,12 @@ if (isset($_POST['submit'])) {
 
 
 
-										<h5 class="card-title"><b>MOTHER - VITALS</b></h5>
-										<div class="row">
-											<div class="col-md-3">
-												<div class="form-group">
-													<label><b>TEMP</b></label>
-													<input type="digit" name="temp" value="<?php echo $res2['temp'] ?>"  class="form-control" required>
-													<div class="invalid-feedback">
-														Please choose "Temp"
-													</div>
-												</div>
-											</div>
-											<div class="col-md-3">
-												<div class="form-group">
-													<label><b>PR</b></label>
-													<input type="digit" name="pr" value="<?php echo $res2['pr'] ?>"  class="form-control" required>
-													<div class="invalid-feedback">
-														Please choose "PR"
-													</div>
-												</div>
-											</div>
-											<div class="col-md-3">
-												<div class="form-group">
-													<label><b>BP</b></label>
-													<input type="digit" name="bp" value="<?php echo $res2['bp'] ?>"  class="form-control" required>
-													<div class="invalid-feedback">
-														Please choose "BP :"
-													</div>
-												</div>
-											</div>
-											<div class="col-md-3">
-												<div class="form-group">
-													<label><b>H/L</b></label>
-													<input type="digit" name="hl" value="<?php echo $res2['h/l'] ?>" class="form-control" required>
-													<div class="invalid-feedback">
-														Please choose "H/L :"
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-md-3">
-												<div class="form-group">
-													<label><b>BREASTS</b></label>
-													<input type="digit" name="bre"  value="<?php echo $res2['breasts'] ?>" class="form-control" required>
-													<div class="invalid-feedback">
-														Please choose "BREASTS :"
-													</div>
-												</div>
-											</div>
-											<div class="col-md-3">
-												<div class="form-group">
-													<label><b>P/A</b></label>
-													<input type="digit" name="pa" value="<?php echo $res2['p/a'] ?>"  class="form-control" required>
-													<div class="invalid-feedback">
-														Please choose "P/A :"
-													</div>
-												</div>
-											</div>
-											<div class="col-md-3">
-												<div class="form-group">
-													<label><b>P/V</b></label>
-													<input type="digit" name="pv" value="<?php echo $res2['p/v'] ?>"  class="form-control" required>
-													<div class="invalid-feedback">
-														Please choose "P/V :"
-													</div>
-												</div>
-											</div>
-
-											<div class="col-md-3">
-												<div class="form-group">
-													<label><b>LOCHIA</b></label>
-													<input type="digit" name="lo" value="<?php echo $res2['lochia'] ?>"  class="form-control" required>
-													<div class="invalid-feedback">
-														Please choose "LOCHIA :"
-													</div>
-												</div>
-											</div>
+																			
 											<div class="row">
 												<div class="col-md-6">
 													<div class="form-group">
 														<label><b>ADVICE ON DISCHARGE</b></label>
-														<textarea name="aod" value="" class="form-control"required><?php echo $res2['advice_on_discharge'] ?></textarea>
+														<textarea name="aod" class="form-control"required><?php echo $res2['advice_on_discharge']; ?></textarea>
 														<!-- <input list="AOD" name="aod" id="A_name" class="form-control"required>
 														<datalist id="AOD">
 
@@ -250,7 +166,7 @@ if (isset($_POST['submit'])) {
 												<div class="col-md-6">
 													<div class="form-group">
 														<label><b>DIET</b></label>
-														<textarea name="diet" value="<?php echo $res2['diet'] ?>"  class="form-control"required><?php echo $res2['diet'] ?></textarea>
+														<textarea name="diet" class="form-control"required><?php echo $res2['diet'] ?></textarea>
 														<!-- <input list="DIET" name="diet" id="A_name" class="form-control"required>
 														<datalist id="DIET">
 															<option value="REGULAR">
@@ -267,7 +183,7 @@ if (isset($_POST['submit'])) {
 												<div class="col-md-6">
 													<div class="form-group">
 														<label><b>Activity:</b></label>
-														<textarea name="activity"  value="" class="form-control"required><?php echo $res2['activity'] ?></textarea>
+														<textarea name="activity" class="form-control"required><?php echo $res2['activity'] ?></textarea>
 														<!-- <div>
 															<input type="checkbox" id="activity" value=" Pelvic rest for 6 weeks i.e.,no sex" name="activity[]">
 															<label> Pelvic rest for 6 weeks i.e.,no sex</label><br>
@@ -286,7 +202,7 @@ if (isset($_POST['submit'])) {
 												<div class="col-md-6">
 													<div class="form-group">
 														<label><b>MEDICATIONS AND FOLLOW UP</b> </label>
-														<textarea name="mafu" value=""  class="form-control"required><?php echo $res2['medications_and_follow_up'] ?></textarea>
+														<textarea name="mafu" class="form-control"required>AS PER <?php echo $res1['doctor_name']; ?></textarea>
 														<div class="invalid-feedback">
 															Please choose "MEDICATIONS AND FOLLOW UP"
 														</div>

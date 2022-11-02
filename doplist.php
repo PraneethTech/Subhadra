@@ -1,18 +1,24 @@
 <?php
 
 include 'connect.php';
-
 session_start();
 include "check.php";
-$sql = mysqli_query($con,"SELECT ppi.id as id, ppi.name as name, ppi.patient_phone_number as patient_phone_number, pi.token_id as token_id from patient_primary_information ppi, patient_inpatient_form pi 
-where ppi.id = pi.patient_id and pi.type_of_inpatient='Surgery' order by date desc");
+
+date_default_timezone_set("Asia/Kolkata");
+$e = strval(date('Ymd'));
+$d  = substr($e,0,4).'-'.substr($e,4,2).'-'.substr($e,6,2);
+$sql = mysqli_query($con,"SELECT  pif.id as id , pif.name as name , pif.patient_phone_number 
+as patient_phone_number from patient_primary_information pif  where pif.id not in (SELECT patient_id from pastrecords)");
+
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-        <title>	Inpatient List</title>
+        <title>patients-details</title>
 		
 		<!-- Favicon -->
         <link rel="shortcut icon" href="assets/img/favicon.png">
@@ -38,7 +44,7 @@ where ppi.id = pi.patient_id and pi.type_of_inpatient='Surgery' order by date de
 		<!-- Main Wrapper -->
         <div class="main-wrapper">
 		
-			<?php include 'menu.php'; ?>
+			<?php include 'menu2.php'; ?>
 			
 			<!-- Page Wrapper -->
             <div class="page-wrapper">
@@ -48,11 +54,13 @@ where ppi.id = pi.patient_id and pi.type_of_inpatient='Surgery' order by date de
 					<div class="page-header">
 						<div class="row">
 							<div class="col">
-								<h3 class="page-title">UPDATE SURGERY FORM</h3>
-								<ul class="breadcrumb">
-									<li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>
-									<li class="breadcrumb-item active">UPDATE SURGERY FORM</li>
-								</ul>
+								<h3 class="page-title">out patient details</h3>
+								<div class="col-md-9">
+                             		<ul class="list-links mb-4">
+                                		<li><a href="ou_list.php">Today's Out Patients  List</a></li>
+                                		<li class="active"><a href="doplist.php">Out Patients List</a></li>
+                           		 </ul>
+                       		   </div>
 							</div>
 						</div>
 					</div>
@@ -71,24 +79,23 @@ where ppi.id = pi.patient_id and pi.type_of_inpatient='Surgery' order by date de
 													<th>Patient ID</th>
 													<th>Name</th>
                                                     <th>Phone Number</th>
-                                                    <th>Token ID</th>
-                                                    <th>Edit Surgery Profile</th>
-													<th></th>
+													<th>Past Records</th>
 												</tr>
 											</thead>
 											<tbody>
 												<?php
                                                     while($run = mysqli_fetch_assoc($sql))
                                                     {
+
                                                         echo '<tr>
                                                         <td>'.$run['id'].'</td>
                                                         <td>'.$run['name'].'</td>
                                                         <td>'.$run['patient_phone_number'].'</td>
-                                                        <td>'.$run['token_id'].'</td>
-                                                        <td><a href="usf.php?pid='.$run['id'].'&tid='.$run['token_id'].'&name='.$run['name'].'"><button class="btn btn-primary">Update Surgery Form</button></a></td>
-														<td>
-														<a href="sf_print.php?pid='.$run['id'].'&tid='.$run['token_id'].'&name='.$run['name'].'" class="btn btn-primary">Print</a>
-														</td>
+														<td><div class="actions">
+														<a href="pr.php?pid='.$run['id'].'" class="btn btn-primary">
+															Add Past Records
+														</a>
+													    </div></td>
                                                         </tr>';
                                                     }
                                                 ?>
