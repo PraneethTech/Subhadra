@@ -10,7 +10,7 @@ $pid = $_GET['pid'];
 $tid = $_GET['tid'];
 $name=$_GET['name'];
 
-$query = "SELECT `id`, `token_id`, `date_of_admission`, `time_of_admisssion`, `date_of_discharge`, `time_of_discharge`,
+$query = "SELECT `id`, `token_id`, `date_of_admission`, `time_of_admisssion`, `date_of_procedure`,`date_of_discharge`, `time_of_discharge`,
  `admission_room_type`, `no_of_days_of_stay`, `doctor_name`, `anesthetist_name`, `tod`, `nursing_staff`, `time`
   FROM `patient_surgery_form` WHERE id='$pid' and token_id='$tid' ";
 $run = mysqli_query($con, $query);
@@ -25,6 +25,7 @@ $query1 = "SELECT `id`, `token_id`, `mother_age_at_time_of_marriage`, `mother_ag
 if (isset($_POST['submit'])) {
     $date_admit = $_POST['dt_admit'];
     $time_admit = $_POST['t_admit'];
+    $dop=$_POST['dop'];
     $date_dicharge = $_POST['d_discharge'];
     $time_discharge = $_POST['t_discharge'];
     $room_type = $_POST['roomtype'];
@@ -43,17 +44,17 @@ if (isset($_POST['submit'])) {
 	$gen=$_POST['gender'];
 	$wb=$_POST['wb'];
     $surgery= "UPDATE `patient_surgery_form` SET `id`='$pid',`token_id`='$tid',
-	`date_of_admission`='$date_admit',`time_of_admisssion`='$time_admit',`date_of_discharge`='$date_dicharge',
+	`date_of_admission`='$date_admit',`time_of_admisssion`='$time_admit',`date_of_procedure`='$dop',`date_of_discharge`='$date_dicharge',
 	`time_of_discharge`='$time_discharge',`admission_room_type`='$room_type ',`no_of_days_of_stay`='$nds',`doctor_name`='$d_name',
 	`anesthetist_name`='$A_name',`tod`='$tod',
 	`nursing_staff`='$N_staff' WHERE id='$pid' and token_id='$tid'";
 
-    $ru = mysqli_query($con, $surgery) or die(mysqli_error());
+    $ru = mysqli_query($con, $surgery);
     $qu1 = "UPDATE `patient_pregnancy_information` SET `id`='$pid',`token_id`='$tid',
     `mother_age_at_time_of_marriage`=' $mam',`mother_age_at_time_of_delivery`='$mad',
     `type_of_delivery`='$td',`number_of_kids_including_this`='$tk',
     `no.of.weeks`='$now',`gender`='$gen',`weight`='$wb' WHERE id='$pid' and token_id='$tid' ";
-    $ru1 = mysqli_query($con, $qu1) or die(mysqli_error());
+    $ru1 = mysqli_query($con, $qu1) ;
 
 echo" <script>document.location='search-upf.php'</script>";
 }
@@ -140,6 +141,13 @@ echo" <script>document.location='search-upf.php'</script>";
 										            <input type="time" class="form-control" value="<?php  echo $res['time_of_admisssion']; ?>" name="t_admit" palceholder="Enter Time"required>
 													<div class="invalid-feedback">
 														Please choose "Time of Admission"
+                                                    </div>
+									            </div>
+                                                <div class="form-group">
+										            <label>Date of Procedure</label>
+										            <input type="date" class="form-control" name="dop" value="<?php echo $res['date_of_procedure'];?>" required>
+													<div class="invalid-feedback">
+														Please choose "Date of Procedure"
                                                     </div>
 									            </div>
 												<div class="form-group">

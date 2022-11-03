@@ -160,7 +160,7 @@ if(isset($_POST['submit']))
 											<div class="col-md-2">
 											  <div class="form-group">
 										            <label>High Rist Pregnancy</label>
-										            <textara name="hrp" class="form-control" required><?php echo $res1['high_risk_pregnancy'];?></textarea>
+										            <textarea name="hrp" class="form-control" required><?php echo $res1['high_risk_pregnancy'];?></textarea>
 									            </div>
 											</div>
 											

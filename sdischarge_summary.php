@@ -126,23 +126,36 @@ $res2 = mysqli_fetch_assoc($run2);
 		     <div class="col-md-4">
 			<p style="font-family:Calibri(Body);font-size:25px"><b>DOA&emsp;&emsp;&emsp;&nbsp;&nbsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;&nbsp;&emsp;&emsp;&emsp;&nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;:</b></h4></p></div>
 			<div class="col-md-8">
-			<p style="font-family:Calibri(Body);font-size:25px"><?php echo $res1['date_of_admission'] ?></p>
+			<p style="font-family:Calibri(Body);font-size:25px"><?php 
+			 $newDate = date("d-m-Y", strtotime($res1['date_of_admission']));  
+			 $dd = strval($newDate);
+			echo $dd;
+			?></p>
 			</div>
 	   </div>
 	   <div class="row">
 		     <div class="col-md-4">
 			<p style="font-family:Calibri(Body);font-size:25px"><b>DATE OF PROCEDURE&emsp;&emsp;&emsp;&nbsp;&emsp;&emsp;&emsp;&emsp;: </b></h4></p></div>
 			<div class="col-md-8">
-			<p style="font-family:Calibri(Body);font-size:25px"><?php echo $res1['date_of_admission'] ?></p>
+			<p style="font-family:Calibri(Body);font-size:25px"><?php
+			  $newDate = date("d-m-Y", strtotime($res1['date_of_procedure']));  
+			  $dd = strval($newDate);
+			 echo $dd;
+			 ?></p>
 			</div>
 	   </div>
 	   <div class="row">
 		     <div class="col-md-4">
 			<p style="font-family:Calibri(Body);font-size:25px"><b>DOD&emsp;&emsp;&emsp;&nbsp;&nbsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;&nbsp;&emsp;&emsp;&emsp;&nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;: </b></h4></p></div>
 			<div class="col-md-8">
-			<p style="font-family:Calibri(Body);font-size:25px"><?php echo $res1['date_of_discharge'] ?></p>
+			<p style="font-family:Calibri(Body);font-size:25px"><?php
+			 $newDate = date("d-m-Y", strtotime($res1['date_of_discharge']));  
+			 $dd = strval($newDate);
+			echo $dd;
+			 ?></p>
 			</div>
 		</div>
+		
 		<div class="row">
 		     <div class="col-md-4">
 			 <p style="font-family:Calibri(Body);font-size:25px"><B>ADMITTING DIAGNOSIS&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;:</B></p></div>

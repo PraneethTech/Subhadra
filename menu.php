@@ -66,6 +66,7 @@
                             <a href="#"><i class="fas fa-filter"></i><span>FILTERS</span> <span class="menu-arrow"></span></a>
                             <ul>
                             <li><a href="edd.php">EDD</a></li>
+                            <li><a href="pregnancy_list.php">Pregnancy List</a></li>
                             <li><a href="patient_list.php">Patient List</a></li>
                             </ul>
                         </li>

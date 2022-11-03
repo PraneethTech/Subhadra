@@ -98,11 +98,30 @@ VALUES ('$pid','$tid','$addiag','$trgiven','$condatdis','$aod','$diet','$activit
 																															echo $res['present_address'] ?></label>
 										</div>
 										<div class="form-group">
-											<label><b>DOA&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</b> :&nbsp&nbsp<?php echo $res1['date_of_admission'] ?></label>
+											<label><b>DOA&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</b> :&nbsp&nbsp
+											<?php 
+											 $newDate = date("d-m-Y", strtotime($res1['date_of_admission']));  
+											 $dd = strval($newDate);
+											echo $dd; 
+											?></label>
 										</div>
 										<div class="form-group">
-											<label><b>DOD&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</b> :&nbsp&nbsp<?php echo $res1['date_of_discharge'] ?></label>
+											<label><b>DOP&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</b> :&nbsp&nbsp
+											<?php 
+											 $newDate = date("d-m-Y", strtotime($res1['date_of_procedure']));  
+											 $dd = strval($newDate);
+											echo $dd; 
+											?></label>
 										</div>
+										<div class="form-group">
+											<label><b>DOD&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</b> :&nbsp&nbsp
+											<?php 
+											 $newDate = date("d-m-Y", strtotime($res1['date_of_discharge']));  
+											 $dd = strval($newDate);
+											echo $dd; 
+											?></label>
+										</div>
+
 										<div class="col-md-12">
 											<div class="form-group">
 												<label><b>ADMITTING DIAGNOSIS</b> </label>
